@@ -18,4 +18,4 @@ def send_userID(message):
     chatid = message.chat.id
     bot.reply_to(message, 'Your ID is %s' % chatid)
     
-bot.polling()
+bot.polling(none_stop=True)
