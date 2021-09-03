@@ -11,7 +11,7 @@ telebot.logger.setLevel(logging.DEBUG)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-	bot.reply_to(message, "I'm messed up doing those stupid things but i got u back")
+	bot.reply_to(message, "Hi, how can i help you with?")
 
 @bot.message_handler(commands=['ID'])
 def send_userID(message):
