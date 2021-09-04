@@ -1,6 +1,8 @@
 import telebot 
 import logging
 from telebot import apihelper
+from lxml import html
+import requests
 
 chatid =  1711761717
 apihelper.SESSION_TIME_TO_LIVE = 5 * 60
@@ -17,5 +19,18 @@ def send_welcome(message):
 def send_userID(message):
     chatid = message.chat.id
     bot.reply_to(message, 'Your ID is %s' % chatid)
+
+@bot.message_handler(commands=['PVU'])
+def PVUPrice(message):
+    url = 'https://coinmarketcap.com/currencies/plantvsundead/'
+    page = requests.get(url)
+    tree = html.fromstring(page.content)
+    Name = tree.xpath('//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[1]/div[1]/h2/text()')
+    Price = tree.xpath('//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/div/text()')
+    bot.reply_to(message, str(Name) + str(Price))
     
+@bot.message_handler(commands=['panocha'])
+def send_panocha(message):
+    photo = open('KeyLogger/panocha.jpeg', 'rb')
+    bot.send_photo(chat_id=chatid, photo=photo)
 bot.polling(none_stop=True)
