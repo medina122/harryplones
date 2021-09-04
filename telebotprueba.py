@@ -28,7 +28,7 @@ def PVUPrice(message):
     tree = html.fromstring(page.content)
     Name = tree.xpath('//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[1]/div[1]/h2/text()')
     Price = tree.xpath('//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/div/text()')
-    bot.reply_to(message, str(Name) + str(Price))
+    bot.reply_to(message, str(Name[1]) + str(Price[1]))
     
 @bot.message_handler(commands=['panocha'])
 def send_panocha(message):
