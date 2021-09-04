@@ -32,5 +32,5 @@ def PVUPrice(message):
 @bot.message_handler(commands=['panocha'])
 def send_panocha(message):
     photo = open('panocha.jpeg', 'rb')
-    bot.send_photo(chat_id=chatid, photo=photo)
+    bot.send_photo(chatid, photo)
 bot.polling(none_stop=True)
