@@ -14,7 +14,7 @@ telebot.logger.setLevel(logging.DEBUG)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
      bot.reply_to(message, "Hi, how can i help you with?")
-     CHAT_ID = message.from_user.id
+     
 
 @bot.message_handler(commands=['ID'])
 def send_userID(message):
@@ -32,6 +32,7 @@ def PVUPrice(message):
     
 @bot.message_handler(commands=['panocha'])
 def send_panocha(message):
+    chatid = message.chat.id
     photo = open('panocha.jpeg', 'rb')
-    bot.send_photo(CHAT_ID, photo)
+    bot.send_photo(chatid, photo)
 bot.polling(none_stop=True)
