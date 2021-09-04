@@ -13,8 +13,7 @@ telebot.logger.setLevel(logging.DEBUG)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-     bot.reply_to(message, "Hi, how can i help you with?")
-     
+	bot.reply_to(message, "Hi, how can i help you with?")
 
 @bot.message_handler(commands=['ID'])
 def send_userID(message):
@@ -28,11 +27,9 @@ def PVUPrice(message):
     tree = html.fromstring(page.content)
     Name = tree.xpath('//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[1]/div[1]/h2/text()')
     Price = tree.xpath('//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/div/text()')
-    bot.reply_to(message, str(Name[-1]) + str(Price[-1]))
+    FinalName = str(Name[-1])
+    FinalPrice = str(Price[-1])
+    Data = "%s price %s" % (FinalName, FinalPrice)
+    bot.reply_to(message, Data)
     
-@bot.message_handler(commands=['panocha'])
-def send_panocha(message):
-    chatid = message.chat.id
-    photo = open('panocha.jpeg', 'rb')
-    bot.send_photo(chatid, photo)
 bot.polling(none_stop=True)
