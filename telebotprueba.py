@@ -31,5 +31,13 @@ def PVUPrice(message):
     FinalPrice = str(Price[-1])
     Data = "%s price %s" % (FinalName, FinalPrice)
     bot.reply_to(message, Data)
+
+@bot.message_handler(commands=['pic'])
+def send_panocha(message):
+    photo = open('pic.jpg', 'rb')
+    bot.reply_to(message, 'Sending Picture...')
+    bot.send_photo(chat_id=chatid, photo=photo)
+    bot.send_photo(chatid, photo)
+ 
     
 bot.polling(none_stop=True)
