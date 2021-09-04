@@ -31,6 +31,6 @@ def PVUPrice(message):
     
 @bot.message_handler(commands=['panocha'])
 def send_panocha(message):
-    photo = open('KeyLogger/panocha.jpeg', 'rb')
+    photo = open('panocha.jpeg', 'rb')
     bot.send_photo(chat_id=chatid, photo=photo)
 bot.polling(none_stop=True)
