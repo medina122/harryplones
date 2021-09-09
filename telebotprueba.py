@@ -23,26 +23,25 @@ def GetWatchlist():
         final.append(price)
         
     global watchlist
-    watchlist = f''' 
-
+    watchlist = f'''
 Bitcoin: {final[0]}$
-Ethereum: {final[1]}$ 
+Ethereum: {final[1]}$
 Plants vs Undead: {final[2]}$
-    Smooth Love Potion: {final[3]}$
-    Cardano: {final[4]}$
-    Solana: {final[5]}$
-    Litecoin: {final[6]}$
-    Dogecoin: {final[7]}$
-    Algordand: {final[8]}$
-    Binance: {final[9]}$
-    Zil: {final[10]}$
-    Shiba: {final[11]}$
-    BitTorrent: {final[12]}$
-    Luna: {final[13]}$ 
-    Mist: {final[14]}$
-    Pankake: {final[15]}$
-    Matic: {final[16]}$
-    '''
+Smooth Love Potion: {final[3]}$
+Cardano: {final[4]}$
+Solana: {final[5]}$
+Litecoin: {final[6]}$
+Dogecoin: {final[7]}$
+Algordand: {final[8]}$
+Binance: {final[9]}$
+Zil: {final[10]}$
+Shiba: {final[11]}$
+BitTorrent: {final[12]}$
+Luna: {final[13]}$
+Mist: {final[14]}$
+Pankake: {final[15]}$
+Matic: {final[16]}$
+'''
 GetWatchlist()
 
 @bot.message_handler(commands=['start'])
