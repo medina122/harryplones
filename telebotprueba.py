@@ -21,7 +21,7 @@ def send_userID(message):
     bot.reply_to(message, 'Your ID is %s' % chatid)
 
 @bot.message_handler(commands=['coins'])
-def GetPrice(ID, Name):
+def GetPrice(message):
 
     lista = ['bitcoin', 'ethereum', 'plant-vs-undead-token','smooth-love-potion', 'cardano', 'solana', 'litecoin', 'dogecoin', 'algorand', 'binancecoin', 'zilliqa', 'shiba-inu', 'bittorrent-2', 'terra-luna', 'mist', 'pancakeswap-token', 'matic-network']
     final = []
