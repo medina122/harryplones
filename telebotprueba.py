@@ -25,7 +25,7 @@ def GetPrice(ID, message):
 
     lista = ['bitcoin', 'ethereum', 'plant-vs-undead-token','smooth-love-potion', 'cardano', 'solana', 'litecoin', 'dogecoin', 'algorand', 'binancecoin', 'zilliqa', 'shiba-inu', 'bittorrent-2', 'terra-luna', 'mist', 'pancakeswap-token', 'matic-network']
     final = []
-    url = 'https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd'%(ID)
+    url = 'https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd'%(coingeckoid)
     response = requests.get(url)
     jsonload = json.loads(response.text)
     price = float(jsonload[ID]["usd"])
