@@ -43,7 +43,7 @@ Pankake: {final[15]}$
 Matic: {final[16]}$
 Axie Infinity: {final[17]}$
 '''
-GetWatchlist()
+
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -56,6 +56,7 @@ def send_userID(message):
 
 @bot.message_handler(commands=['coins'])
 def send_watchlist(message):
+    GetWatchlist()
     bot.reply_to(message, watchlist)
 
     
