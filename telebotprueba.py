@@ -56,7 +56,7 @@ def GetPrice(message):
     Matic: {final[16]}$
     '''
 
-    print(watchlist)
+    bot.reply_to(message, watchlist)
 
     
 bot.polling(none_stop=True)
