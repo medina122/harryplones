@@ -12,7 +12,7 @@ logger = telebot.logger
 telebot.logger.setLevel(logging.DEBUG)
 
 def GetWatchlist():
-    lista = ['bitcoin', 'ethereum', 'plant-vs-undead-token','smooth-love-potion', 'cardano', 'solana', 'litecoin', 'dogecoin', 'algorand', 'binancecoin', 'zilliqa', 'shiba-inu', 'bittorrent-2', 'terra-luna', 'mist', 'pancakeswap-token', 'matic-network']
+    lista = ['bitcoin', 'ethereum', 'plant-vs-undead-token','smooth-love-potion', 'cardano', 'solana', 'litecoin', 'dogecoin', 'algorand', 'binancecoin', 'zilliqa', 'shiba-inu', 'bittorrent-2', 'terra-luna', 'mist', 'pancakeswap-token', 'matic-network', 'axie-infinity']
     final = []
 
     for coingeckoid in lista:
@@ -41,6 +41,7 @@ Luna: {final[13]}$
 Mist: {final[14]}$
 Pankake: {final[15]}$
 Matic: {final[16]}$
+Axie Infinity: {final[17]}$
 '''
 GetWatchlist()
 
