@@ -1,11 +1,11 @@
 import telebot 
 import logging
-from telebot import apihelper
-from lxml import html
+import json
 import requests
+from telebot import apihelper
 
 chatid =  1711761717
-apihelper.SESSION_TIME_TO_LIVE = 5 * 60
+telebot.apihelper.SESSION_TIME_TO_LIVE = 5 * 60
 token = '1759121577:AAHVHZMjB8cFkxzflzcJbNz1C4vLecxzOrg'
 bot = telebot.TeleBot(token)
 logger = telebot.logger
@@ -20,24 +20,45 @@ def send_userID(message):
     chatid = message.chat.id
     bot.reply_to(message, 'Your ID is %s' % chatid)
 
-@bot.message_handler(commands=['PVU'])
-def PVUPrice(message):
-    url = 'https://coinmarketcap.com/currencies/plantvsundead/'
-    page = requests.get(url)
-    tree = html.fromstring(page.content)
-    Name = tree.xpath('//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[1]/div[1]/h2/text()')
-    Price = tree.xpath('//*[@id="__next"]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/div/text()')
-    FinalName = str(Name[-1])
-    FinalPrice = str(Price[-1])
-    Data = "%s price %s" % (FinalName, FinalPrice)
-    bot.reply_to(message, Data)
+@bot.message_handler(commands=['coins'])
+def GetPrice(ID, Name):
 
-@bot.message_handler(commands=['pic'])
-def send_panocha(message):
-    photo = open('pic.jpg', 'rb')
-    bot.reply_to(message, 'Sending Picture...')
-    bot.send_photo(chat_id=chatid, photo=photo)
-    bot.send_photo(chatid, photo)
- 
+    lista = ['bitcoin', 'ethereum', 'plant-vs-undead-token','smooth-love-potion', 'cardano', 'solana', 'litecoin', 'dogecoin', 'algorand', 'binancecoin', 'zilliqa', 'shiba-inu', 'bittorrent-2', 'terra-luna', 'mist', 'pancakeswap-token', 'matic-network']
+    final = []
+    url = 'https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd'%(ID)
+    response = requests.get(url)
+    jsonload = json.loads(response.text)
+    price = float(jsonload[ID]["usd"])
+    final.append(price)
+    
+
+    for coingeckoid in lista:
+        GetPrice(coingeckoid, coingeckoid)
+
+    watchlist = f''' 
+
+    Bitcoin: {final[0]}$
+    Ethereum: {final[1]}$ 
+    Plants vs Undead: {final[2]}$
+    Smooth Love Potion: {final[3]}$
+    Cardano: {final[4]}$
+    Solana: {final[5]}$
+    Litecoin: {final[6]}$
+    Dogecoin: {final[7]}$
+    Algordand: {final[8]}$
+    Binance: {final[9]}$
+    Zil: {final[10]}$
+    Shiba: {final[11]}$
+    BitTorrent: {final[12]}$
+    Luna: {final[13]}$ 
+    Mist: {final[14]}$
+    Pankake: {final[15]}$
+    Matic: {final[16]}$
+    '''
+
+    print(watchlist)
+
     
 bot.polling(none_stop=True)
+
+
