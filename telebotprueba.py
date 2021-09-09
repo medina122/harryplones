@@ -33,7 +33,7 @@ def GetPrice(message):
     
 
     for coingeckoid in lista:
-        GetPrice(coingeckoid, coingeckoid)
+        GetPrice(coingeckoid)
 
     watchlist = f''' 
 
