@@ -25,9 +25,9 @@ def GetWatchlist():
     global watchlist
     watchlist = f''' 
 
-    Bitcoin: {final[0]}$
-    Ethereum: {final[1]}$ 
-    Plants vs Undead: {final[2]}$
+Bitcoin: {final[0]}$
+Ethereum: {final[1]}$ 
+Plants vs Undead: {final[2]}$
     Smooth Love Potion: {final[3]}$
     Cardano: {final[4]}$
     Solana: {final[5]}$
