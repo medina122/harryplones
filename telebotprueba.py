@@ -11,30 +11,18 @@ bot = telebot.TeleBot(token)
 logger = telebot.logger
 telebot.logger.setLevel(logging.DEBUG)
 
-@bot.message_handler(commands=['start'])
-def send_welcome(message):
-	bot.reply_to(message, "Hi, how can i help you with?")
-
-@bot.message_handler(commands=['ID'])
-def send_userID(message):
-    chatid = message.chat.id
-    bot.reply_to(message, 'Your ID is %s' % chatid)
-
-@bot.message_handler(commands=['coins'])
-def GetPrice(ID, message):
-
+def GetWatchlist():
     lista = ['bitcoin', 'ethereum', 'plant-vs-undead-token','smooth-love-potion', 'cardano', 'solana', 'litecoin', 'dogecoin', 'algorand', 'binancecoin', 'zilliqa', 'shiba-inu', 'bittorrent-2', 'terra-luna', 'mist', 'pancakeswap-token', 'matic-network']
     final = []
-    url = 'https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd'%(coingeckoid)
-    response = requests.get(url)
-    jsonload = json.loads(response.text)
-    price = float(jsonload[ID]["usd"])
-    final.append(price)
-    
 
     for coingeckoid in lista:
-        GetPrice(coingeckoid)
-
+        url = 'https://api.coingecko.com/api/v3/simple/price?ids=%s&vs_currencies=usd'%(coingeckoid)
+        response = requests.get(url)
+        jsonload = json.loads(response.text)
+        price = float(jsonload[coingeckoid]["usd"])
+        final.append(price)
+        
+    global watchlist
     watchlist = f''' 
 
     Bitcoin: {final[0]}$
@@ -55,7 +43,19 @@ def GetPrice(ID, message):
     Pankake: {final[15]}$
     Matic: {final[16]}$
     '''
+GetWatchlist()
 
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+	bot.reply_to(message, "Hi, how can i help you with?")
+
+@bot.message_handler(commands=['ID'])
+def send_userID(message):
+    chatid = message.chat.id
+    bot.reply_to(message, 'Your ID is %s' % chatid)
+
+@bot.message_handler(commands=['coins'])
+def send_watchlist(message):
     bot.reply_to(message, watchlist)
 
     
